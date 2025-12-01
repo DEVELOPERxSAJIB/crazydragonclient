@@ -22,3 +22,9 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
 input {
   outline: 0 !important;
 }
+
+
+input#Field-linkEmailInput:focus {
+    outline: 2px solid #6E3B72 !important;
+    border: 2px solid #6E3B72 !important;
+}

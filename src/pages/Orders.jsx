@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMyOrders, cancelOrder } from "../features/orders/orderApiSlice";
 import { format } from "date-fns";
 import { toast } from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const OrdersPage = () => {
   const dispatch = useDispatch();
@@ -14,18 +15,35 @@ const OrdersPage = () => {
 
   useEffect(() => {
     dispatch(getMyOrders({ page: 1, status: statusFilter }));
+
+    const interval = setInterval(() => {
+      dispatch(getMyOrders({ page: 1, status: statusFilter }));
+    }, 10000);
+
+    return () => clearInterval(interval);
   }, [dispatch, statusFilter]);
 
   const handleCancelOrder = async (orderId) => {
-    if (window.confirm("Are you sure you want to cancel this order?")) {
-      try {
-        await dispatch(cancelOrder(orderId)).unwrap();
-        toast.success("Order cancelled successfully");
-        dispatch(getMyOrders({ page: currentPage, status: statusFilter }));
-      } catch (error) {
-        toast.error(error || "Failed to cancel order");
+    Swal.fire({
+      title: "Are you sure?",
+      text: "This order will be cancelled",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#491648",
+      confirmButtonText: "Confirm",
+      cancelButtonColor: "#999",
+      cancelButtonText: "No",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await dispatch(cancelOrder(orderId)).unwrap();
+          toast.success("Order cancelled successfully");
+          dispatch(getMyOrders({ page: currentPage, status: statusFilter }));
+        } catch (error) {
+          toast.error(error || "Failed to cancel order");
+        }
       }
-    }
+    });
   };
 
   const handlePageChange = (page) => {
@@ -77,7 +95,7 @@ const OrdersPage = () => {
 
         {loading ? (
           <div className="flex justify-center items-center py-20">
-            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-red-600"></div>
+            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-[#4E1D4D]"></div>
           </div>
         ) : orders.length === 0 ? (
           <div className="text-center py-20">
@@ -100,7 +118,7 @@ const OrdersPage = () => {
             </p>
             <a
               href="/products"
-              className="inline-block px-6 py-3 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition"
+              className="inline-block px-6 py-3 bg-[#4E1D4D] text-white rounded-lg font-semibold hover:bg-[#6E3B72] transition"
             >
               Browse Menu
             </a>
@@ -251,7 +269,7 @@ const OrdersPage = () => {
                                 e.stopPropagation();
                                 window.location.href = `/orders/${order._id}`;
                               }}
-                              className="text-red-600 hover:text-red-900 font-medium mr-3"
+                              className="text-[#4E1D4D] cursor-pointer hover:text-[#6E3B72] font-medium mr-3"
                             >
                               View
                             </button>
@@ -261,7 +279,7 @@ const OrdersPage = () => {
                                   e.stopPropagation();
                                   handleCancelOrder(order._id);
                                 }}
-                                className="text-gray-600 hover:text-gray-900 font-medium"
+                                className="text-gray-600 cursor-pointer hover:text-gray-900 font-medium"
                               >
                                 Cancel
                               </button>

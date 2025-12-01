@@ -723,7 +723,7 @@ const AdminProducts = () => {
                   <div className="mb-6">
                     <label className="block text-sm font-medium text-gray-700 mb-3">
                       <span className="flex items-center gap-2">
-                        🎯 Recommended Add-ons
+                        Recommended Add-ons
                         <span className="text-xs text-gray-500 font-normal">
                           (Select existing products)
                         </span>

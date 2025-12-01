@@ -15,6 +15,7 @@ import {
 import toast from "react-hot-toast";
 import api from "../../utils/api";
 import { useOrderNotifications } from "../../hooks/useOrderNotifications";
+import Swal from "sweetalert2";
 
 const AdminOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -47,8 +48,17 @@ const AdminOrders = () => {
 
   // Fetch orders on mount
   useEffect(() => {
+    // Initial load
     fetchOrders();
-  }, []);
+
+    // Refresh every 10 seconds
+    const interval = setInterval(() => {
+      fetchOrders();
+    }, 10000);
+
+    // Cleanup when component unmounts
+    return () => clearInterval(interval);
+  }, [fetchOrders]);
 
   // Handle new orders via Socket.IO
   const handleNewOrder = useCallback((newOrder) => {
@@ -124,9 +134,25 @@ const AdminOrders = () => {
 
   const deleteOrder = async (orderId) => {
     if (
-      !window.confirm(
-        "Are you sure you want to delete this order? This action cannot be undone."
-      )
+      Swal.fire({
+        title: "Are you sure?",
+        text: "This order will be cancelled",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#491648",
+        confirmButtonText: "Delete",
+        cancelButtonColor: "#999",
+        cancelButtonText: "No",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          try {
+            // await dispatch(cancelOrder(orderId)).unwrap();
+            toast.success("Order deleted successfully");
+          } catch (error) {
+            toast.error(error || "Failed to cancel order");
+          }
+        }
+      })
     ) {
       return;
     }

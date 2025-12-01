@@ -288,7 +288,7 @@ const StoreFormModal = ({ store, onClose, onSuccess }) => {
             <div className="bg-blue-50 p-4 rounded-lg">
               <h3 className="font-semibold text-lg mb-2">GPS Coordinates *</h3>
               <p className="text-sm text-gray-600 mb-4">
-                📍 Get coordinates from{" "}
+                Get coordinates from{" "}
                 <a
                   href="https://www.google.com/maps"
                   target="_blank"
@@ -443,7 +443,7 @@ const StoreFormModal = ({ store, onClose, onSuccess }) => {
 
             {/* Fees & Taxes */}
             <div className="bg-yellow-50 p-4 rounded-lg">
-              <h3 className="font-semibold text-lg mb-4">💰 Fees & Taxes</h3>
+              <h3 className="font-semibold text-lg mb-4">Fees & Taxes</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">

@@ -77,8 +77,8 @@ const PaymentSuccess = () => {
       <div className="bg-white rounded-lg shadow-lg p-8 max-w-md w-full text-center">
         {processing ? (
           <>
-            <div className="w-16 h-16 mx-auto border-4 border-orange-600 border-t-transparent rounded-full animate-spin mb-4"></div>
-            <h2 className="text-2xl font-bold mb-2">Processing Payment</h2>
+            <div className="w-16 h-16 mx-auto border-4 border-[#4E1D4D] border-t-transparent rounded-full animate-spin mb-4"></div>
+            <h2 className="text-[20px] font-semibold mb-2">Processing Payment</h2>
             <p className="text-gray-600">
               Please wait while we confirm your payment...
             </p>

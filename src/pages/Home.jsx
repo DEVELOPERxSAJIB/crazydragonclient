@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import HomeSlider from "../components/Home/HomeSlider";
 import FoodList from "../components/Home/FoodList";
-import { Truck, ClockPlus, Handbag, MapPin } from "lucide-react";
+import { Truck, ClockPlus, Handbag, MapPin, Phone } from "lucide-react";
 import api from "../utils/api";
 
 const Home = () => {
@@ -140,15 +140,15 @@ const Home = () => {
             <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                  <h3 className="text-[20px] font-semibold text-gray-900 mb-2">
                     {storeData.name}
                   </h3>
                   <p className="text-gray-600 flex items-center gap-2">
-                    <MapPin size={18} className="text-purple-600" />
+                    <MapPin size={18} className="text-[#4E1D4D]" />
                     {storeData.address?.fullAddress}
                   </p>
-                  <p className="text-gray-600 mt-1">
-                    📞 {storeData.contact?.phone}
+                  <p className="text-gray-600 flex gap-2 items-center mt-1">
+                   <Phone size={18} color="#4E1D4D" /> {storeData.contact?.phone}
                   </p>
                 </div>
                 <div className="flex items-center gap-3">

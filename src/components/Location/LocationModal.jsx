@@ -291,7 +291,7 @@ const LocationModal = ({ isOpen, onClose, selectedMode }) => {
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-red-700 rounded-full transition"
+            className="p-2 hover:bg-[#4E1D4D] rounded-full transition"
           >
             <X className="w-6 h-6 text-white" />
           </button>

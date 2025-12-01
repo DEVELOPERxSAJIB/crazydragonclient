@@ -579,7 +579,7 @@ const OrdersMap = ({ orders = [] }) => {
                     {orderCount > 1 && (
                       <div className="mb-3 bg-blue-50 border border-blue-200 rounded-lg p-2 text-center">
                         <p className="font-bold text-blue-900 text-sm">
-                          📍 {orderCount} Orders at this location
+                          {orderCount} Orders at this location
                         </p>
                       </div>
                     )}
@@ -594,10 +594,9 @@ const OrdersMap = ({ orders = [] }) => {
                             key={order._id}
                             className="border-b border-gray-200 pb-3 last:border-0"
                           >
-                            <div className="flex items-center justify-between mb-2">
+                            <div className="flex gap-3 items-center justify-between mb-2">
                               <h3 className="font-bold text-gray-900 text-sm">
-                                Order #
-                                {order.orderNumber || order._id?.slice(-6)}
+                                #{order.orderNumber || order._id?.slice(-6)}
                               </h3>
                               <span
                                 className={`text-xs font-semibold px-2 py-1 rounded-full text-white ${
@@ -631,70 +630,78 @@ const OrdersMap = ({ orders = [] }) => {
                               </span>
                             </div>
 
-                            <div className="space-y-2 text-sm">
-                              <div>
-                                <p className="font-semibold text-gray-800">
-                                  Type:
-                                </p>
-                                <p className="text-gray-600 capitalize">
+                            <div className="text-sm mt-3 space-y-1">
+                              <div className="flex gap-1">
+                                <span className="font-semibold m-0 p-0 text-gray-800">
+                                  Type :
+                                </span>
+                                <span className="text-gray-600 capitalize m-0 p-0">
                                   {orderType === "collection"
-                                    ? "Collection/Pickup 📦"
-                                    : "Delivery 🛵"}
-                                </p>
+                                    ? "Collection/Pickup"
+                                    : "Home Delivery"}
+                                </span>
                               </div>
 
-                              <div>
-                                <p className="font-semibold text-gray-800">
+                              <div className="flex gap-1">
+                                <span className="font-semibold m-0 text-gray-800">
                                   Customer:
-                                </p>
-                                <p className="text-gray-600">
+                                </span>
+                                <span className="text-gray-600 m-0">
                                   {order.customerInfo?.firstName}{" "}
                                   {order.customerInfo?.lastName}
-                                </p>
-                                <p className="text-xs text-gray-500">
+                                </span>
+                              </div>
+                              <div className="flex gap-1">
+                                <span className="font-semibold text-gray-800">
+                                  Customer:
+                                </span>
+                                <span className="text-gray-600">
                                   {order.customerInfo?.phone}
-                                </p>
+                                </span>
                               </div>
 
                               {orderType === "delivery" &&
                                 order.deliveryInfo?.address && (
-                                  <div>
-                                    <p className="font-semibold text-gray-800">
-                                      Delivery Address:
-                                    </p>
-                                    <p className="text-gray-600">
-                                      {order.deliveryInfo.address.street ||
+                                  <div className="flex">
+                                    <span className="font-semibold text-gray-800">
+                                      Delivery Address : 
+                                    </span>
+                                    
+                                    <span className="text-gray-600">
+                                      &nbsp;{order.deliveryInfo.address.street ||
                                         "No street"}
-                                    </p>
-                                    {(order.deliveryInfo.address.city ||
+                                    </span> {" "}
+                                    {/* {(order.deliveryInfo.address.city ||
                                       order.deliveryInfo.address
                                         .postalCode) && (
-                                      <p className="text-xs text-gray-500 mt-1">
-                                        {order.deliveryInfo.address.city}
-                                        {order.deliveryInfo.address
-                                          .postalCode &&
-                                          `, ${order.deliveryInfo.address.postalCode}`}
-                                      </p>
-                                    )}
-                                    {!order.deliveryInfo?.address
+                                      <>
+                                        <p className="text-xs text-gray-500 mt-1">
+                                          {order.deliveryInfo.address.city}
+                                          {order.deliveryInfo.address
+                                            .postalCode &&
+                                            `, ${order.deliveryInfo.address.postalCode}`}
+                                        </p>
+                                      </>
+                                    )} */}
+                                    {/* {!order.deliveryInfo?.address
                                       ?.coordinates && (
                                       <p className="text-xs text-orange-500 mt-1">
-                                        📍 Approximate location
+                                        Approximate location
                                       </p>
-                                    )}
+                                    )} */}
                                   </div>
                                 )}
 
-                              <div>
-                                <p className="font-semibold text-gray-800">
+                              <div className="flex items-center gap-1">
+                                <span className="font-semibold text-gray-800">
                                   Total:
-                                </p>
-                                <p className="text-lg font-bold text-[#491648]">
+                                </span>
+                                <span className="text-lg m-0 font-bold text-[#491648]">
                                   €
                                   {order.pricing?.total?.toFixed(2) ||
                                     order.total?.toFixed(2) ||
                                     "0.00"}
-                                </p>
+                                </span>
                               </div>
 
                               <div className="text-xs text-gray-500">

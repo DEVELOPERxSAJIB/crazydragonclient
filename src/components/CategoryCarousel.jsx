@@ -63,21 +63,23 @@ const CategoryCarousel = ({
         }}
       >
         {categories.map((category) => (
-          <button
-            key={category}
-            onClick={() => onSelectCategory(category)}
-            className={`
-              flex-shrink-0 px-6 py-2.5 rounded-full text-sm font-semibold 
-              transition-all duration-200 whitespace-nowrap
-              ${
-                selectedCategory === category
-                  ? "bg-[#5A1E5A] text-white shadow-lg scale-105"
-                  : "bg-white text-gray-700 hover:bg-gray-50 hover:shadow-md border border-gray-200"
-              }
-            `}
-          >
-            {category}
-          </button>
+<button
+  key={category}
+  onClick={() => onSelectCategory(category)}
+  className={`
+    shrink-0 px-6 py-2.5 rounded-full text-sm font-semibold
+    transition-all duration-300
+    backdrop-blur-sm
+    ${
+      selectedCategory === category
+        ? "bg-[#5A1E5A] text-white shadow-sm border border-[#6f2670]"
+        : "bg-white/70 text-gray-700 border border-gray-200 hover:bg-white hover:border-[#5A1E5A] hover:text-[#5A1E5A] hover:shadow-sm"
+    }
+  `}
+>
+  {category}
+</button>
+
         ))}
       </div>
 

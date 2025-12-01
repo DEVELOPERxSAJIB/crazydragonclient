@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Plus } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllProducts,
@@ -20,6 +20,8 @@ const getPriceValue = (price) => {
 
 const FoodList = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const {
     products,
     categories: allCategories,
@@ -131,7 +133,7 @@ const FoodList = () => {
     // Check delivery location first
     if (!hasLocation()) {
       toast.error("Please set your delivery location first", {
-        icon: "📍",
+        icon: "",
         duration: 4000,
       });
       // Ensure product modal is closed before opening location modal
@@ -150,6 +152,7 @@ const FoodList = () => {
     // Check if user is authenticated
     if (!isAuthenticated) {
       toast.error("Please login first to add items to cart");
+      navigate('/signin')
       return;
     }
 

@@ -586,7 +586,7 @@ const CartSidebar = () => {
                         isStoreOpen ? "text-green-700" : "text-red-700"
                       }`}
                     >
-                      {isStoreOpen ? "🟢 Open Now" : "🔴 Currently Closed"}
+                      {isStoreOpen ? "Open Now" : "Currently Closed"}
                     </p>
                   </div>
                 </div>

@@ -93,7 +93,7 @@ const PaymentCheckout = () => {
     <div className="min-h-screen bg-gray-50 py-12 px-4">
       <div className="max-w-2xl mx-auto">
         <div className="bg-white rounded-lg shadow-lg p-8">
-          <h1 className="text-3xl font-bold mb-6 text-center">
+          <h1 className="text-[20px] font-semibold mb-6 text-center">
             Complete Payment
           </h1>
 
@@ -111,7 +111,7 @@ const PaymentCheckout = () => {
             <>
               {loading && (
                 <div className="text-center py-12">
-                  <div className="w-12 h-12 mx-auto border-4 border-orange-600 border-t-transparent rounded-full animate-spin mb-4"></div>
+                  <div className="w-12 h-12 mx-auto border-4 border-[#4E1D4D] border-t-transparent rounded-full animate-spin mb-4"></div>
                   <p className="text-gray-600">Loading payment form...</p>
                 </div>
               )}
@@ -126,7 +126,7 @@ const PaymentCheckout = () => {
                 <button
                   type="submit"
                   disabled={processing}
-                  className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full cursor-pointer bg-[#4E1D4D] hover:bg-[#6E3B72] text-white font-bold py-4 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {processing ? "Processing..." : "Pay Now"}
                 </button>
@@ -140,7 +140,7 @@ const PaymentCheckout = () => {
 
           <button
             onClick={() => navigate("/orders")}
-            className="w-full mt-4 text-orange-600 hover:text-orange-700 font-medium"
+            className="w-full cursor-pointer mt-4 text-red-600 hover:text-red-800 font-medium"
           >
             Cancel Payment
           </button>
